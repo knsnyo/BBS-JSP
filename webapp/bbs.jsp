@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import = "java.io.PrintWriter" %>
+<%@ page import = "user.BbsDAO" %>
+<%@ page import = "user.Bbs" %>
+<%@ page import = "java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +17,15 @@
 	String userID = null;
 	if (null != (String) session.getAttribute("userID")) {
 		userID = (String) session.getAttribute("userID");
+	}
+	
+	// 페이지 처리
+	int pageNumber = 1;
+	
+	// 외부에서 넘어온 파라미터 pageNumber가 있다면
+	// 즉 데이터가 10개 이상이라면
+	if(null != request.getParameter("pageNumber")){
+		pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
 	}
 	%>
 	<!-- nav bar -->
@@ -71,14 +83,39 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<th scope="row">1</th>
-					<td>나</td>
-					<td>2021.10.25</td>
-					<td>미안하다 이거 보여주려고 어그로 끌었다.</td>
+			    <%
+			    BbsDAO bbsDAO = new BbsDAO();
+			    ArrayList<Bbs> list = bbsDAO.getList(pageNumber);
+			    for(int i = 0; i < list.size(); i++){
+			    %>
+				<tr scope="row">
+					<td ><%= list.get(i).getBbsID() %></td>
+					<td><a href="view.jsp?bbsID = <%= list.get(i).getBbsID() %>">
+					<%= list.get(i).getBbsTitle() %></a></td>
+					<td><%= list.get(i).getUserID() %></td>
+					<td><%= list.get(i).getBbsDate().substring(0, 11) + list.get(i).getBbsDate().substring(11, 13)
+					+ "시" + list.get(i).getBbsDate().substring(14, 16) + "분" %></td>
 				</tr>
+				<%
+			    }
+				%>
 			</tbody>
 		</table>
+		<!-- 페이징 처리 영역 -->
+		<%
+		if(1 != pageNumber){
+		%>
+		<a href="bbs.jsp?pageNumber=<%=pageNumber - 1%>"
+		class = "btn btn-success"> 이전 </a>
+		<%
+		}if(bbsDAO.nextPage(pageNumber + 1)){
+		%>
+		<a href = "bbs.jsp?pageNumber=<%=pageNumber + 1 %>"
+		class = "btn btn-success">다음</a>
+		<%
+		}
+		%>
+		
 		<!-- 글쓰기 버튼 -->
 		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 			<a class="btn btn-primary" type="button" href="write.jsp">글쓰기</A>
