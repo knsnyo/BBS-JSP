@@ -101,7 +101,7 @@ public class BbsDAO {
     
     // 10개씩 출력을 위한 다음 페이지 메서드
     public boolean nextPage(int pageNumber) {
-    	String sql = "select * from bbs where bbsID < ? and bbs Availble = 1";
+    	String sql = "select * from bbs where bbsID < ? and bbsAvailable = 1";
     	try {
     		PreparedStatement pstmt = conn.prepareStatement(sql);
     		pstmt.setInt(1,  getNext() - (pageNumber - 1) * 10);
