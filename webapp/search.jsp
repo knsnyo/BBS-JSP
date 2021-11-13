@@ -145,7 +145,7 @@
 			</div>
 			<!-- map -->
 			<div class="col-8">
-				<div id="map" style="width: 100%; height: 400px;">
+				<div id="map" style="width: 100%; height: 600px;">
 					<!-- map api -->
 					<script type="text/javascript"
 						src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2f9a220c2cb04519ebb7ef91fe07e62e"></script>
@@ -166,6 +166,14 @@
 			level : 3//지도의 레벨(확대, 축소 정도)
 		};
 		var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+		var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667); 
+
+		// 마커를 생성합니다
+		var marker = new kakao.maps.Marker({
+		    position: markerPosition
+		});
+		
+		marker.setMap(map);
 	</script>
 </body>
 
