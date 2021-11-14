@@ -18,7 +18,13 @@
 	if (null != (String) session.getAttribute("userID")) {
 		userID = (String) session.getAttribute("userID");
 	}
-	
+	if(null == userID){
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('세션 에러')");
+		script.println("location.href='main.jsp'");
+		script.println("</script>");
+	}
 	// 페이지 처리
 	int pageNumber = 1;
 	

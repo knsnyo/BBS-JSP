@@ -22,19 +22,25 @@
 	if (null != (String) session.getAttribute("userID")) {
 		userID = (String) session.getAttribute("userID");
 	}
+	
+	// 열어야 할 게시글 번호 확인
 	int bbsID = 0;
 	if(null != request.getParameter("bbsID")){
 		bbsID = Integer.parseInt(request.getParameter("bbsID"));
 	}
+	
+	// 데이터 안 넘어왔을때
 	if (0 == bbsID){
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
-		script.println("alert('ERROR')");
+		script.println("alert('bbsID가 없어요')");
 		script.println("location.href = 'bbs.jsp'");
 		script.println("</script>");
 	}
+	
 	Bbs bbs = new BbsDAO().getBbs(bbsID);
 	%>
+	
 	<!-- nav bar -->
 	<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
 		<!-- 가득 차게 -->
@@ -127,7 +133,7 @@
 				<a href="bbs.jsp" class="btn btn-primary">목록</a>
 				<%
 				    // 자기 글이라면
-				    if(null == userID && userID.equals(bbs.getUserID())){
+				    if(null != userID && userID.equals(bbs.getUserID())){
 				%>    	
 				<a href="update.jsp?bbsID=<%= bbsID%>" class="btn btn-primary">수정</a>
 			    <a href="deleteAction.jsp?bbsID=<%= bbsID%>" class="btn btn-primary">삭제</a>
