@@ -138,4 +138,36 @@ public class BbsDAO {
     	}
     	return null;
     }
+    
+    // 글 수정
+    public int update(int bbsID, String bbsTitle, String bbsContent) {
+    	String sql = "update bbs set bbsTitle = ?, bbsContent = ? where bbsID = ?";
+    	try {
+    		PreparedStatement pstmt = conn.prepareStatement(sql);
+    		pstmt.setString(1,  bbsTitle);
+    		pstmt.setString(2, bbsContent);
+    		pstmt.setInt(3,  bbsID);
+    		
+    		return pstmt.executeUpdate();
+    	}catch(Exception e) {
+    		e.printStackTrace();
+    	}
+    	
+    	return -1; // db error
+    }
+    
+    // 글 삭제
+    public int delete(int bbsID) {
+    	String sql = "update bbs set bbsAvailable = 0 where bbsID = ?";
+    	try {
+    		PreparedStatement pstmt = conn.prepareStatement(sql);
+    		pstmt.setInt(1, bbsID);
+    		
+    		return pstmt.executeUpdate();
+    	}catch(Exception e) {
+    		e.printStackTrace();
+    	}
+  
+    	return -1; //db error
+    }
 }
