@@ -129,7 +129,7 @@
 				</table>
 				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 					<input type="submit" class="btn btn-primary" value="수정하기">
-					<button class="btn btn-primary" onclick="location.href='bbs.jsp';">취소</button>
+					<a href="bbs.jsp" class="btn btn-primary">취소</a>
 				</div>
 			</form>
 		</div>
