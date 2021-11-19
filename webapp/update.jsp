@@ -104,7 +104,7 @@
 	<!-- 글 쓰는 곳 전체 -->
 	<div class="container">
 		<div class="row">
-			<form method="POST" action="writeAction.jsp">
+			<form method="POST" action="updateAction.jsp">
 				<table class="table"
 					style="text-align: center; border: 1px solid #dddddd">
 					<thead>
@@ -118,12 +118,10 @@
 						<tr>
 							<td><input type="text" class="form-control"
 								placeholder="글 제목" name="bbsTitle" maxlength="50"
-								value = "<%=bbs.getBbsTitle() %>"></td>
+								value="<%=bbs.getBbsTitle() %>"></td>
 						</tr>
 						<tr>
-							<td><textarea class="form-control" placeholder="글 내용"
-									name="bbsContent" maxlength="2048" style="height: 350px"
-									value = "<%= bbs.getBbsContent()%>"></textarea></td>
+							<td><textarea class="form-control" name="bbsContent" maxlength="2048" style="height: 350px"><%= bbs.getBbsContent()%></textarea></td>
 						</tr>
 					</tbody>
 				</table>
