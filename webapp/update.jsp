@@ -31,7 +31,7 @@
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('유효하지 않은 글입니다.')");
-		script.println("location.href = 'bbs.jsp'");
+		script.println("location.href='bbs.jsp'");
 		script.println("</script>");
 	}
 	
@@ -104,7 +104,7 @@
 	<!-- 글 쓰는 곳 전체 -->
 	<div class="container">
 		<div class="row">
-			<form method="POST" action="updateAction.jsp">
+			<form method="POST" action="updateAction.jsp?bbsID=<%= bbsID %>">
 				<table class="table"
 					style="text-align: center; border: 1px solid #dddddd">
 					<thead>
