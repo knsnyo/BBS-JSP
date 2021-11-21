@@ -44,9 +44,12 @@ public class UserDAO {
 		}
 		return -2; //오류
 	}	
+	
+	
 	// 회원가입 기능
 	public int signup(User user) {
 		String sql="insert into user values(?,?,?)";
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, user.getUserID());

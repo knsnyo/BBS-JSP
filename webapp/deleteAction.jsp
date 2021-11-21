@@ -45,33 +45,24 @@
 	if (!userID.equals(bbs.getUserID())) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
-		script.println("alert('글 수정 권한이 없어요.')");
+		script.println("alert('글 삭제 권한이 없어요.')");
 		script.println("location.href='bbs.jsp'");
 		script.println("</script>");
 	} else {
-		// 빈칸 확인
-		if (null == request.getParameter("bbsTitle") || null == request.getParameter("bbsContent")
-		|| request.getParameter("bbsTitle").equals("") || request.getParameter("bbsContent").equals("")) {
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('입력이 안 된 사항이 있어요.')");
-			script.println("history.back()");
-			script.println("</script>");
-		}
-		// 글 수정
+		// 글 삭제
 		BbsDAO bbsDAO = new BbsDAO();
-		int result = bbsDAO.update(bbsID, request.getParameter("bbsTitle"), request.getParameter("bbsContent"));
+		int result = bbsDAO.delete(bbsID);
 		if (-1 == result) {
 			// DB error
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
-			script.println("alert('글쓰기 실패: DB ERROR')");
+			script.println("alert('글삭제 실패: DB ERROR')");
 			script.println("history.back()");
 			script.println("</script>");
 		} else {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
-			script.println("alert('글쓰기 수정')");
+			script.println("alert('글삭제 성공')");
 			script.println("location.href='bbs.jsp'");
 			script.println("</script>");
 		}
