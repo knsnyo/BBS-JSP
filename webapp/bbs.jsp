@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width" , intial-scale="1">
+<meta name="viewport" content="width=device-width", intial-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
 <title>게시판</title>
 </head>
@@ -96,6 +96,7 @@
 			    %>
 				<tr scope="row">
 					<td ><%= list.get(i).getBbsID() %></td>
+					<!-- a의 href는 문자열이므로 띄워쓰기 조심 -->
 					<td><a href="view.jsp?bbsID=<%= list.get(i).getBbsID() %>">
 					<%= list.get(i).getBbsTitle().replaceAll(" ", "&nbsp;")
 					        .replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br/>") %></a></td>
@@ -111,11 +112,13 @@
 		<!-- 페이징 처리 영역 -->
 		<%
 		if(1 != pageNumber){
+			// 첫 페이지가 아니라면
 		%>
 		<a href="bbs.jsp?pageNumber=<%=pageNumber - 1%>"
 		class = "btn btn-success"> 이전 </a>
 		<%
 		}if(bbsDAO.nextPage(pageNumber + 1)){
+			// 다음 페이지가 있다면
 		%>
 		<a href = "bbs.jsp?pageNumber=<%=pageNumber + 1 %>"
 		class = "btn btn-success">다음</a>

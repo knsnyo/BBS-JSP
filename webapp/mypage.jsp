@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import = "java.io.PrintWriter" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page import="java.io.PrintWriter"%>
 <!doctype html>
 <html lang="en">
 
@@ -10,6 +11,11 @@
 
 <!-- Bootstrap CSS  -->
 <link href="css/bootstrap.css" rel="stylesheet" />
+
+<link rel="stylesheet"
+	href="https://naver.github.io/billboard.js/release/latest/dist/theme/datalab.min.css">
+<script
+	src="https://naver.github.io/billboard.js/release/latest/dist/billboard.pkgd.min.js"></script>
 <title>메인 화면</title>
 </head>
 
@@ -76,9 +82,28 @@
 			</div>
 		</div>
 	</nav>
-
-	<!-- 게시판 -->
-
+	<!-- 시각화(billboard.js) 사용 실험 -->
+	<div id='graph'></div>
+	<script>
+		var chart = bb.generate({
+			data : {
+				columns : [ [ "data1", 30, 200, 100, 400, 150, 250 ],
+						[ "data2", 130, 100, 140, 200, 150, 50 ] ],
+				type : "bar"
+			},
+			bar : {
+				width : {
+					ratio : 0.5
+				}
+			},
+			bindto : "#barChart"
+		});
+		setTimeout(function() {
+			chart.load({
+				columns : [ [ "data3", 130, 150, 200, 300, 200, 100 ] ]
+			});
+		}, 1000);
+	</script>
 	<!-- script -->
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

@@ -156,7 +156,7 @@ public class BbsDAO {
     	return -1; // db error
     }
     
-    // 글 삭제
+    // 글 삭제 (비활성화)
     public int delete(int bbsID) {
     	String sql = "update bbs set bbsAvailable = 0 where bbsID = ?";
     	try {
