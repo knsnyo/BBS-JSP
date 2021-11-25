@@ -148,7 +148,7 @@
 				<div id="map" style="width: 100%; height: 600px;">
 					<!-- map api -->
 					<script type="text/javascript"
-						src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2f9a220c2cb04519ebb7ef91fe07e62e"></script>
+						src="//dapi.kakao.com/v2/maps/sdk.js?appkey=<APPKEY>"></script>
 				</div>
 			</div>
 			<!-- 매물 보여주는거 -->
