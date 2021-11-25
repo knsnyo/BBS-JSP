@@ -82,10 +82,28 @@
 			</div>
 		</div>
 	</nav>
-	<!-- 회원 정보변경, 회원 탈퇴, 찜 기능 -->
-	<button class="btn btn-primary" onclick="">회원 정보수정</button>
-	<button class="btn btn-primary" onclick="location.href='zzim.jsp'">찜 시각화</button>
-	<button class="btn btn-danger" onclick="location.href='unsignAction.jsp'">회원 탈퇴</button>
+	<!-- 시각화(billboard.js) 사용 실험 -->
+	<div id='graph'></div>
+	<script>
+		var chart = bb.generate({
+			data : {
+				columns : [ [ "방 1", 30, 200,  100, 10],
+						[ "방 2", 40, 100, 140,  12] ],
+				type : "bar"
+			},
+			bar : {
+				width : {
+					ratio : 0.5
+				}
+			},
+			bindto : "#barChart"
+		});
+		setTimeout(function() {
+			chart.load({
+				columns : [ [ "방 3", 50, 150, 200, 8] ]
+			});
+		}, 1000);
+	</script>
 	<!-- script -->
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

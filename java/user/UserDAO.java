@@ -63,4 +63,20 @@ public class UserDAO {
 		// 회원가입 실패
 		return -1;
 	}
+	
+	// 회원탈퇴 기능
+	public int unsign(String userID) {
+		String sql="delete from user where userID=?";
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, userID);
+			pstmt.executeUpdate();
+			
+			return 1;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		// 실패
+		return -1;
+	}
 }
